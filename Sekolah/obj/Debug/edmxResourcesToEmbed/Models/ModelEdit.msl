@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="JadwalSekolahDBModel1StoreContainer" CdmEntityContainer="JadwalSekolahDBEntities2">
+    <EntitySetMapping Name="Gurus">
+      <EntityTypeMapping TypeName="JadwalSekolahDBModel1.Guru">
+        <MappingFragment StoreEntitySet="Guru">
+          <ScalarProperty Name="IdGuru" ColumnName="IdGuru" />
+          <ScalarProperty Name="NamaGuru" ColumnName="NamaGuru" />
+          <ScalarProperty Name="Alamat" ColumnName="Alamat" />
+          <ScalarProperty Name="TahunMulaiMengajar" ColumnName="TahunMulaiMengajar" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jadwals">
+      <EntityTypeMapping TypeName="JadwalSekolahDBModel1.Jadwal">
+        <MappingFragment StoreEntitySet="Jadwal">
+          <ScalarProperty Name="IdJadwal" ColumnName="IdJadwal" />
+          <ScalarProperty Name="Kelas" ColumnName="Kelas" />
+          <ScalarProperty Name="Waktu" ColumnName="Waktu" />
+          <ScalarProperty Name="IdMapel" ColumnName="IdMapel" />
+          <ScalarProperty Name="IdGuru" ColumnName="IdGuru" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mapels">
+      <EntityTypeMapping TypeName="JadwalSekolahDBModel1.Mapel">
+        <MappingFragment StoreEntitySet="Mapel">
+          <ScalarProperty Name="IdMapel" ColumnName="IdMapel" />
+          <ScalarProperty Name="NamaPelajaran" ColumnName="NamaPelajaran" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

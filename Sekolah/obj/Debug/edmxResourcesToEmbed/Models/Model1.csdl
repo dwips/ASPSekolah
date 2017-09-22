@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JadwalSekolahDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Guru">
+    <Key>
+      <PropertyRef Name="IdGuru" />
+    </Key>
+    <Property Name="IdGuru" Type="Int32" Nullable="false" />
+    <Property Name="NamaGuru" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Alamat" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TahunMulaiMengajar" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Jadwals" Relationship="Self.FK_Jadwal_Guru" FromRole="Guru" ToRole="Jadwal" />
+  </EntityType>
+  <EntityType Name="Jadwal">
+    <Key>
+      <PropertyRef Name="IdJadwal" />
+    </Key>
+    <Property Name="IdJadwal" Type="Int32" Nullable="false" />
+    <Property Name="Kelas" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Waktu" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="IdMapel" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdGuru" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Guru" Relationship="Self.FK_Jadwal_Guru" FromRole="Jadwal" ToRole="Guru" />
+    <NavigationProperty Name="Mapel" Relationship="Self.FK_Jadwal_Mapel" FromRole="Jadwal" ToRole="Mapel" />
+  </EntityType>
+  <EntityType Name="Mapel">
+    <Key>
+      <PropertyRef Name="IdMapel" />
+    </Key>
+    <Property Name="IdMapel" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NamaPelajaran" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Jadwals" Relationship="Self.FK_Jadwal_Mapel" FromRole="Mapel" ToRole="Jadwal" />
+  </EntityType>
+  <Association Name="FK_Jadwal_Guru">
+    <End Role="Guru" Type="Self.Guru" Multiplicity="1" />
+    <End Role="Jadwal" Type="Self.Jadwal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guru">
+        <PropertyRef Name="IdGuru" />
+      </Principal>
+      <Dependent Role="Jadwal">
+        <PropertyRef Name="IdGuru" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jadwal_Mapel">
+    <End Role="Mapel" Type="Self.Mapel" Multiplicity="1" />
+    <End Role="Jadwal" Type="Self.Jadwal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mapel">
+        <PropertyRef Name="IdMapel" />
+      </Principal>
+      <Dependent Role="Jadwal">
+        <PropertyRef Name="IdMapel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="JadwalSekolahDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Gurus" EntityType="Self.Guru" />
+    <EntitySet Name="Jadwals" EntityType="Self.Jadwal" />
+    <EntitySet Name="Mapels" EntityType="Self.Mapel" />
+    <AssociationSet Name="FK_Jadwal_Guru" Association="Self.FK_Jadwal_Guru">
+      <End Role="Guru" EntitySet="Gurus" />
+      <End Role="Jadwal" EntitySet="Jadwals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jadwal_Mapel" Association="Self.FK_Jadwal_Mapel">
+      <End Role="Mapel" EntitySet="Mapels" />
+      <End Role="Jadwal" EntitySet="Jadwals" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

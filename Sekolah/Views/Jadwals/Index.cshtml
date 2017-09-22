@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Sekolah.Models.Jadwal>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Kelas)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Waktu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Guru.NamaGuru)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mapel.NamaPelajaran)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kelas)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Waktu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Guru.NamaGuru)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mapel.NamaPelajaran)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdJadwal }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdJadwal }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdJadwal })
+        </td>
+    </tr>
+}
+
+</table>

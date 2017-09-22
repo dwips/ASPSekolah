@@ -1,0 +1,50 @@
+﻿@model Sekolah.Models.Jadwal
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Jadwal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kelas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kelas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Waktu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Waktu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Guru.NamaGuru)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Guru.NamaGuru)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mapel.NamaPelajaran)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mapel.NamaPelajaran)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.IdJadwal }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

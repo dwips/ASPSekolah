@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JadwalSekolahDBModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Guru">
+    <Key>
+      <PropertyRef Name="IdGuru" />
+    </Key>
+    <Property Name="IdGuru" Type="int" Nullable="false" />
+    <Property Name="NamaGuru" Type="varchar" MaxLength="50" />
+    <Property Name="Alamat" Type="varchar" MaxLength="100" />
+    <Property Name="TahunMulaiMengajar" Type="varchar" MaxLength="4" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Jadwal">
+    <Key>
+      <PropertyRef Name="IdJadwal" />
+    </Key>
+    <Property Name="IdJadwal" Type="int" Nullable="false" />
+    <Property Name="Kelas" Type="varchar" MaxLength="10" />
+    <Property Name="Waktu" Type="varchar" MaxLength="15" />
+    <Property Name="IdMapel" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="IdGuru" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Mapel">
+    <Key>
+      <PropertyRef Name="IdMapel" />
+    </Key>
+    <Property Name="IdMapel" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="NamaPelajaran" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK_Jadwal_Guru">
+    <End Role="Guru" Type="Self.Guru" Multiplicity="1" />
+    <End Role="Jadwal" Type="Self.Jadwal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Guru">
+        <PropertyRef Name="IdGuru" />
+      </Principal>
+      <Dependent Role="Jadwal">
+        <PropertyRef Name="IdGuru" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jadwal_Mapel">
+    <End Role="Mapel" Type="Self.Mapel" Multiplicity="1" />
+    <End Role="Jadwal" Type="Self.Jadwal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mapel">
+        <PropertyRef Name="IdMapel" />
+      </Principal>
+      <Dependent Role="Jadwal">
+        <PropertyRef Name="IdMapel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="JadwalSekolahDBModel1StoreContainer">
+    <EntitySet Name="Guru" EntityType="Self.Guru" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Jadwal" EntityType="Self.Jadwal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mapel" EntityType="Self.Mapel" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Jadwal_Guru" Association="Self.FK_Jadwal_Guru">
+      <End Role="Guru" EntitySet="Guru" />
+      <End Role="Jadwal" EntitySet="Jadwal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jadwal_Mapel" Association="Self.FK_Jadwal_Mapel">
+      <End Role="Mapel" EntitySet="Mapel" />
+      <End Role="Jadwal" EntitySet="Jadwal" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

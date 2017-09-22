@@ -1,0 +1,56 @@
+﻿@model Sekolah.Models.Jadwal
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Jadwal</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Kelas)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kelas)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Waktu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Waktu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Guru.NamaGuru)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Guru.NamaGuru)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mapel.NamaPelajaran)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mapel.NamaPelajaran)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

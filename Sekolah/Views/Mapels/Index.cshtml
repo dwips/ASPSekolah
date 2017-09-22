@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Sekolah.Models.Mapel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NamaPelajaran)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NamaPelajaran)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdMapel }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdMapel }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdMapel })
+        </td>
+    </tr>
+}
+
+</table>
